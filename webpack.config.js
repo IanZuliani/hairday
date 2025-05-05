@@ -26,10 +26,19 @@ module.exports = {
     },
 
     plugins: [
-        new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({//inserting the html files into our folder
             template: path.resolve(__dirname, "index.html"),
             favicon: path.resolve("src", "assets", "scissors.svg"),
-        })
-    ]
+        }),
+    ],
+
+    module: {
+        rules:[
+            {
+                test: /\.css$/,//when it is a css file we will use the loaders
+                use: ["style-loader", "css-loader"]
+            },
+        ],
+    },
 
 }
