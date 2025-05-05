@@ -1,5 +1,6 @@
 //using javascript in the node environment, we need to do the import like this
 const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     target: "web",
@@ -23,5 +24,11 @@ module.exports = {
       liveReload: true,
         
     },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "index.html"),
+        })
+    ]
 
 }
