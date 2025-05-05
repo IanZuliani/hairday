@@ -10,5 +10,18 @@ module.exports = {
     output: {
        filename: "main.js",//name of the file that will be generated after the build
        path: path.resolve(__dirname, "dist"),//folder that will be generated
-    }
+    },
+
+
+    //creating a server that monitors changes in the application.
+    devServer: {
+      static:{
+          directory: path.join(__dirname, "dist")
+      },
+      port: 3000,
+      open: true,
+      liveReload: true,
+        
+    },
+
 }
