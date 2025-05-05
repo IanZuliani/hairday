@@ -1,6 +1,7 @@
 //using javascript in the node environment, we need to do the import like this
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")//plugin to move files from essets folder to build, dist.
 
 module.exports = {
     target: "web",
@@ -29,6 +30,14 @@ module.exports = {
         new HtmlWebpackPlugin({//inserting the html files into our folder
             template: path.resolve(__dirname, "index.html"),
             favicon: path.resolve("src", "assets", "scissors.svg"),
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, "src", "assets"),
+                    to: path.resolve(__dirname, "dist", "src", "assets")
+                },
+            ]
         }),
     ],
 
