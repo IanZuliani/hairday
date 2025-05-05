@@ -47,6 +47,16 @@ module.exports = {
                 test: /\.css$/,//when it is a css file we will use the loaders
                 use: ["style-loader", "css-loader"]
             },
+            {
+                test:/\.js$/,//see all files ending with .js
+                exclude: /node_modules/,//ignore node_modules folder
+                use:{
+                    loader: "babel-loader",
+                    options:{
+                        presets:["@babel/preset-env"]
+                    }
+                }
+            }
         ],
     },
 
