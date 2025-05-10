@@ -6,6 +6,9 @@ import {hoursClick} from "./hours-click.js"
 const hours = document.getElementById("hours") 
 
 export function hoursLoad({ date }){
+    //clear the schedule list
+    hours.innerHTML = ""
+
     const opening = openingHours.map((hour)=>{
         //retrieving only the time removes the : and puts the first position in the scheduleHour
     const [scheduleHour] = hour.split(":")

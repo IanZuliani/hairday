@@ -33,13 +33,13 @@ form.onsubmit = (event) => {
             return alert("select the appointment time")
         }
         
-        //Recuperar somente a hora
+        //Recover only the time
         const [hour] = hourSelected.innerText.split(":")
 
-        //inserir a hora na data
+        //insert time into date
         const when = dayjs(selectedDate.value).add(hour, "hour")
 
-        //gerar um ID
+        //generate ID
         const id = new Date().getTime()
 
         console.log({
@@ -48,7 +48,7 @@ form.onsubmit = (event) => {
             when,
         })
     } catch (error) {
-        alert("Nao foi possivel realizar o agendamento")
+        alert("It was not possible to schedule the appointment")
         console.log(error)
     }
 
