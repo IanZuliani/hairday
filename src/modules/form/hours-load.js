@@ -1,5 +1,6 @@
 import dayjs from "dayjs"
 import { openingHours } from "../../utils/opening-hours.js"
+import {hoursClick} from "./hours-click.js"
 
 //Get the ul hours so we can add the li
 const hours = document.getElementById("hours") 
@@ -48,6 +49,9 @@ export function hoursLoad({ date }){
         //add LI in ul hours
         hours.append(li)
     })
+
+    //adiciona evento de clique nos horarios disponiveis
+    hoursClick()
 }
 
 //Create the hour Headers 
