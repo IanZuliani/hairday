@@ -35,7 +35,26 @@ export function hoursLoad({ date }){
 
         //add time in LI
         li.textContent = hour
+
+        //checks if there is a header
+        if(hour === "9:00"){
+            hourHeaderAdd("Morning")
+        }else if(hour === "13:00"){
+            hourHeaderAdd("Afternoon")
+        }else if(hour === "18:00"){
+            hourHeaderAdd("Night")
+        }
+
         //add LI in ul hours
         hours.append(li)
     })
+}
+
+//Create the hour Headers 
+function hourHeaderAdd(title){
+    const header = document.createElement("li")
+    header.classList.add("hour-period")
+    header.textContent = title
+
+    hours.append(header)
 }
