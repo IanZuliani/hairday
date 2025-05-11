@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
 
 import { scheduleNew } from "../../services/schedule-new"
+import { schedulesDay } from "../schedules/load"
 
 const form = document.querySelector("form")
 const clientName = document.getElementById("client")
@@ -44,12 +45,17 @@ form.onsubmit = async (event) => {
         //generate ID
         const id = new Date().getTime()
 
-//await to wait for the function to finish, but we have to make this function asynchronous        
+        //await to wait for the function to finish, but we have to make this function asynchronous        
         await scheduleNew({
             id,
             name,
             when,
         })
+
+        //reload schedules when a new one is created
+        await schedulesDay()
+        //clear customer name input after creating an appointment
+        clientName.value = ""
     } catch (error) {
         alert("It was not possible to schedule the appointment")
         console.log(error)
