@@ -6,9 +6,9 @@ export async function scheduleCancel({id}){
             method: "DELETE",
         })
 
-        alert("Agendamento cancelado com sucesso!")
+        alert("Appointment cancelled successfully!")
     } catch (error) {
         console.log(error)
-        alert("Nao foi possivel cancelar o agendamento, tente novamente mas tarde")
+        alert("Unable to cancel appointment, please try again later")
     }
 }
