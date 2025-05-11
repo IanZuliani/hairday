@@ -5,9 +5,13 @@ import {hoursClick} from "./hours-click.js"
 //Get the ul hours so we can add the li
 const hours = document.getElementById("hours") 
 
-export function hoursLoad({ date }){
+export function hoursLoad({ date, dailySchedules }){
     //clear the schedule list
     hours.innerHTML = ""
+
+    //Get the list of busy times
+    const unavailableHours = dailySchedules.map((schedule) => dayjs(schedule.when).format("HH:mm"))
+    //console.log(unavailableHours)
 
     const opening = openingHours.map((hour)=>{
         //retrieving only the time removes the : and puts the first position in the scheduleHour
@@ -16,12 +20,15 @@ export function hoursLoad({ date }){
         //console.log(scheduleHour)
 
         //add the time to the date and check if it is in the past
-        const isHourPast = dayjs(date).add(scheduleHour, "hour").isAfter(dayjs())
+        const isHourPast = dayjs(date).add(scheduleHour, "hour").isBefore(dayjs())
         //console.log(scheduleHour, isHourPast)
+
+        //will only consider a time available if the time is not scheduled or if it is not in the past
+        const available = !unavailableHours.includes(hour) && !isHourPast
 
        return{
         hour,
-        available: isHourPast
+        available
        }
     })
 
